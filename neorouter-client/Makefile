@@ -24,8 +24,8 @@ COMMENT=	Fast, secure, simple VPN software with NAT-traversal
 ONLY_FOR_ARCHS=	i386 amd64
 NO_BUILD=       yes
 
-PLIST_FILES=    bin/nrservice bin/nrclientcmd bin/rmnrclient.sh
-PORTDOCS=	ZebraNetworkSystems/NeoRouter/nrclient.README
+PLIST_FILES=    bin/nrservice bin/nrclientcmd bin/rmnrclient.sh etc/rc.d/nrservice
+PORTDOCS=	nrclient.README
 
 
 do-install:
@@ -35,7 +35,7 @@ do-install:
 	${INSTALL_SCRIPT} ${WRKSRC}/etc/rc.d/nrservice.sh ${PREFIX}/etc/rc.d/nrservice
 .if !defined(NOPORTDOCS)
 	@${MKDIR} ${DOCSDIR}
-	cd ${WRKSRC} && ${INSTALL_DATA} ${PORTDOCS} ${DOCSDIR}
+	cd ${WRKSRC}/ZebraNetworkSystems/NeoRouter/ && ${INSTALL_DATA} ${PORTDOCS} ${DOCSDIR}
 .endif
 
 
