@@ -1,1 +1,23 @@
 This is a FreeBSD port to install the NeoRouter binaries.
+
+To build a binary package (tbz) for installation on FreeNAS 0.7 full,
+run "make package" from some other FreeBSD development system.
+
+
+CLIENT INSTALLATION
+-------------------
+After installing the neorouter-client port, you must also perform the
+following actions:
+
+1) Add the following to /etc/rc.conf:
+nrservice_enable="YES"
+
+2) Start nrclient with:
+/usr/local/etc/rc.d/nrservice.sh start
+
+3) Run the following and interactively supply the address, username,
+and password of your neorouter server (Ctrl-C after connected):
+/usr/local/bin/nrclientcmd
+
+4) Subsequent reboots will automatically start nrclient.
+
