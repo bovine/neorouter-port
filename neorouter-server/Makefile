@@ -7,28 +7,27 @@
 
 PORTNAME=	neorouter-server
 PORTVERSION=	1.5.1.2820
-PORTREVISION=   1
+PORTREVISION=	1
 
 CATEGORIES=	security
 MASTER_SITES=	http://download.neorouter.com/Downloads/NRFree/Update_${PORTVERSION}/FreeBSD/
 
-DISTFILES=      nrserver-${PORTVERSION}-free-freebsd-${ARCH}.tgz
-WRKSRC=         ${WRKDIR}/nrserver
+DISTFILES=	nrserver-${PORTVERSION}-free-freebsd-${ARCH}.tgz
+WRKSRC=		${WRKDIR}/nrserver
 
-DISTINFO_FILE=  ${MASTERDIR}/distinfo.${ARCH}
+DISTINFO_FILE=	${MASTERDIR}/distinfo.${ARCH}
 
 MAINTAINER=	jeff@bovine.net
 COMMENT=	Fast, secure, simple VPN software with NAT-traversal
 
 ONLY_FOR_ARCHS=	i386 amd64
-NO_BUILD=       yes
+NO_BUILD=	yes
 
-PLIST_FILES=    bin/nrserver bin/rmnrserver.sh etc/rc.d/nrserver \
+PLIST_FILES=	bin/nrserver bin/rmnrserver.sh etc/rc.d/nrserver \
 	ZebraNetworkSystems/NeoRouter/openssl.cnf
 PORTDOCS=	nrserver.README
 
 NEOROUTERROOT=	${PREFIX}/ZebraNetworkSystems/NeoRouter/
-
 
 do-install:
 	${INSTALL_PROGRAM} ${WRKSRC}/bin/nrserver ${PREFIX}/bin/
@@ -41,7 +40,6 @@ do-install:
 	cd ${WRKSRC}/ZebraNetworkSystems/NeoRouter && ${INSTALL_DATA} ${PORTDOCS} ${DOCSDIR}
 .endif
 
-
 post-install:
 	test -f ${NEOROUTERROOT}/server.crt || openssl req -new -newkey rsa:1024 -days 3650 -nodes -x509 -keyout ${NEOROUTERROOT}/server.key -out ${NEOROUTERROOT}/server.crt -config ${NEOROUTERROOT}/openssl.cnf
 	@${ECHO} ""
@@ -50,7 +48,5 @@ post-install:
 	@${ECHO} "Start nrclient with:"
 	@${ECHO} "   $(prefix)/etc/rc.d/nrserver.sh start"
 	@${ECHO} ""
-
-
 
 .include <bsd.port.mk>

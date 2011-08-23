@@ -7,26 +7,24 @@
 
 PORTNAME=	neorouter-client
 PORTVERSION=	1.5.1.2820
-PORTREVISION=   1
+PORTREVISION=	1
 
 CATEGORIES=	security
 MASTER_SITES=	http://download.neorouter.com/Downloads/NRFree/Update_${PORTVERSION}/FreeBSD/
 
+DISTFILES=	nrclient-${PORTVERSION}-free-freebsd-${ARCH}.tgz
+WRKSRC=		${WRKDIR}/nrclient
 
-DISTFILES=      nrclient-${PORTVERSION}-free-freebsd-${ARCH}.tgz
-WRKSRC=         ${WRKDIR}/nrclient
-
-DISTINFO_FILE=  ${MASTERDIR}/distinfo.${ARCH}
+DISTINFO_FILE=	${MASTERDIR}/distinfo.${ARCH}
 
 MAINTAINER=	jeff@bovine.net
 COMMENT=	Fast, secure, simple VPN software with NAT-traversal
 
 ONLY_FOR_ARCHS=	i386 amd64
-NO_BUILD=       yes
+NO_BUILD=	yes
 
-PLIST_FILES=    bin/nrservice bin/nrclientcmd bin/rmnrclient.sh etc/rc.d/nrservice
+PLIST_FILES=	bin/nrservice bin/nrclientcmd bin/rmnrclient.sh etc/rc.d/nrservice
 PORTDOCS=	nrclient.README
-
 
 do-install:
 	${INSTALL_PROGRAM} ${WRKSRC}/bin/nrservice ${PREFIX}/bin
@@ -38,7 +36,6 @@ do-install:
 	cd ${WRKSRC}/ZebraNetworkSystems/NeoRouter/ && ${INSTALL_DATA} ${PORTDOCS} ${DOCSDIR}
 .endif
 
-
 post-install:
 	@${ECHO} ""
 	@${ECHO} "Add the following to /etc/rc.conf:"
@@ -46,7 +43,5 @@ post-install:
 	@${ECHO} "Start nrclient with:"
 	@${ECHO} "   $(prefix)/etc/rc.d/nrservice.sh start"
 	@${ECHO} ""
-
-
 
 .include <bsd.port.mk>
