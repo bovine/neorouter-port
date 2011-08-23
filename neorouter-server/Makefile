@@ -8,17 +8,16 @@
 PORTNAME=	neorouter-server
 PORTVERSION=	1.5.1.2820
 PORTREVISION=	1
-
 CATEGORIES=	security
 MASTER_SITES=	http://download.neorouter.com/Downloads/NRFree/Update_${PORTVERSION}/FreeBSD/
-
-DISTFILES=	nrserver-${PORTVERSION}-free-freebsd-${ARCH}.tgz
-WRKSRC=		${WRKDIR}/nrserver
-
-DISTINFO_FILE=	${MASTERDIR}/distinfo.${ARCH}
+DISTNAME=	nrserver-${PORTVERSION}-free-freebsd-${ARCH}
+EXTRACT_SUFX=	.tgz
 
 MAINTAINER=	jeff@bovine.net
 COMMENT=	Fast, secure, simple VPN software with NAT-traversal
+
+WRKSRC=		${WRKDIR}/nrserver
+DISTINFO_FILE=	${MASTERDIR}/distinfo.${ARCH}
 
 ONLY_FOR_ARCHS=	i386 amd64
 NO_BUILD=	yes
@@ -33,7 +32,7 @@ do-install:
 	${INSTALL_PROGRAM} ${WRKSRC}/bin/nrserver ${PREFIX}/bin/
 	${INSTALL_SCRIPT} ${WRKSRC}/bin/rmnrserver.sh ${PREFIX}/bin/
 	${INSTALL_SCRIPT} ${WRKSRC}/etc/rc.d/nrserver.sh ${PREFIX}/etc/rc.d/nrserver
-	@${MKDIR} -p ${NEOROUTERROOT}
+	@${MKDIR} ${NEOROUTERROOT}
 	${INSTALL_DATA} ${WRKSRC}/ZebraNetworkSystems/NeoRouter/openssl.cnf ${NEOROUTERROOT}
 .if !defined(NOPORTDOCS)
 	@${MKDIR} ${DOCSDIR}
@@ -46,7 +45,7 @@ post-install:
 	@${ECHO} "Add the following to /etc/rc.conf:"
 	@${ECHO} '   nrserver_enable="YES"'
 	@${ECHO} "Start nrclient with:"
-	@${ECHO} "   $(prefix)/etc/rc.d/nrserver.sh start"
+	@${ECHO} "   ${prefix}/etc/rc.d/nrserver.sh start"
 	@${ECHO} ""
 
 .include <bsd.port.mk>
