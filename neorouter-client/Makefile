@@ -22,13 +22,12 @@ DISTINFO_FILE=	${MASTERDIR}/distinfo.${ARCH}
 ONLY_FOR_ARCHS=	i386 amd64
 NO_BUILD=	yes
 
-PLIST_FILES=	bin/nrservice bin/nrclientcmd bin/rmnrclient.sh etc/rc.d/nrservice
+PLIST_FILES=	bin/nrservice bin/nrclientcmd etc/rc.d/nrservice
 PORTDOCS=	nrclient.README
 
 do-install:
 	${INSTALL_PROGRAM} ${WRKSRC}/bin/nrservice ${PREFIX}/bin
 	${INSTALL_PROGRAM} ${WRKSRC}/bin/nrclientcmd ${PREFIX}/bin
-	${INSTALL_SCRIPT} ${WRKSRC}/bin/rmnrclient.sh ${PREFIX}/bin
 	${INSTALL_SCRIPT} ${WRKSRC}/etc/rc.d/nrservice.sh ${PREFIX}/etc/rc.d/nrservice
 .if !defined(NOPORTDOCS)
 	@${MKDIR} ${DOCSDIR}

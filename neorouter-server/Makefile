@@ -22,7 +22,7 @@ DISTINFO_FILE=	${MASTERDIR}/distinfo.${ARCH}
 ONLY_FOR_ARCHS=	i386 amd64
 NO_BUILD=	yes
 
-PLIST_FILES=	bin/nrserver bin/rmnrserver.sh etc/rc.d/nrserver \
+PLIST_FILES=	bin/nrserver etc/rc.d/nrserver \
 	ZebraNetworkSystems/NeoRouter/openssl.cnf
 PORTDOCS=	nrserver.README
 
@@ -30,7 +30,6 @@ NEOROUTERROOT=	${PREFIX}/ZebraNetworkSystems/NeoRouter/
 
 do-install:
 	${INSTALL_PROGRAM} ${WRKSRC}/bin/nrserver ${PREFIX}/bin/
-	${INSTALL_SCRIPT} ${WRKSRC}/bin/rmnrserver.sh ${PREFIX}/bin/
 	${INSTALL_SCRIPT} ${WRKSRC}/etc/rc.d/nrserver.sh ${PREFIX}/etc/rc.d/nrserver
 	@${MKDIR} ${NEOROUTERROOT}
 	${INSTALL_DATA} ${WRKSRC}/ZebraNetworkSystems/NeoRouter/openssl.cnf ${NEOROUTERROOT}
