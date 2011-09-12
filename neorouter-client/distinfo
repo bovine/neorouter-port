@@ -1,2 +1,4 @@
 SHA256 (nrclient-1.5.1.2820-free-freebsd-amd64.tgz) = 81cb4cdd1b46cce347b125db2522686b4b4570a5abc43d88f3e07f24a246138c
 SIZE (nrclient-1.5.1.2820-free-freebsd-amd64.tgz) = 1551629
+SHA256 (nrclient-1.5.1.2820-free-freebsd-i386.tgz) = 6f81ef641c8382fc906ab22d464172d8886901c220a9e833d209b2d4d9ac57ac
+SIZE (nrclient-1.5.1.2820-free-freebsd-i386.tgz) = 1447471

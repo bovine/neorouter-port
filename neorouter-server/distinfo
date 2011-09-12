@@ -1,2 +1,4 @@
 SHA256 (nrserver-1.5.1.2820-free-freebsd-amd64.tgz) = bdb3c7369ac314b7338fb550604b8316abb139c3c63f2822f1e78731a31bd636
 SIZE (nrserver-1.5.1.2820-free-freebsd-amd64.tgz) = 1233100
+SHA256 (nrserver-1.5.1.2820-free-freebsd-i386.tgz) = 3af82204197d133ecc9f16c75b3f775720e7758e84571ecb203bf7093f15fc8f
+SIZE (nrserver-1.5.1.2820-free-freebsd-i386.tgz) = 1139331

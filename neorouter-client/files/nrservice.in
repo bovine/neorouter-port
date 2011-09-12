@@ -1,0 +1,59 @@
+#!/bin/sh
+#
+# $FreeBSD$
+#
+# PROVIDE: nrservice
+# REQUIRE: DAEMON LOGIN
+# KEYWORD: shutdown
+#
+# Add the following lines to /etc/rc.conf.local or /etc/rc.conf
+# to enable this service:
+#
+# nrservice_enable (bool):   Set to NO by default.
+#		Set it to YES to enable nrservice.
+
+. /etc/rc.subr
+
+name="nrservice"
+rcvar=`set_rcvar`
+
+start_cmd="${name}_start"
+stop_cmd="${name}_stop"
+pidfile="/var/run/${name}.pid"
+DAEMON="/usr/local/bin/${name}"
+
+load_rc_config $name
+
+: ${nrservice_enable="NO"}
+
+nrservice_start() 
+{
+	echo -n "Starting ${name} services: "
+	if [ -x /usr/sbin/daemon ]; then
+		/usr/sbin/daemon -f -p $pidfile $DAEMON >/dev/null &
+	else
+		$DAEMON >/dev/null &
+		echo $! >$pidfile
+	fi
+	if [ $? -eq 0 ]
+	then
+	    echo "SUCCESS"
+	else
+	    echo "FAILED"
+	fi
+}	
+
+nrservice_stop() 
+{
+	echo -n "Shutting down ${name} services: "
+	pkill $name
+	if [ $? -eq 0 ]
+	then
+	    echo "SUCCESS"
+	else
+	    echo "FAILED"
+	fi
+}	
+
+run_rc_command "$1"
+

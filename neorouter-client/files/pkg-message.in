@@ -1,0 +1,7 @@
+To enable the neorouter daemon add the following to /etc/rc.conf:
+
+	nrservice_enable="YES"
+
+Start nrclient with:
+
+	%%PREFIX%%/etc/rc.d/nrservice start

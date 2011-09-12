@@ -1,0 +1,7 @@
+To enable the neorouter server add the following to /etc/rc.conf:
+
+	nrserver_enable="YES"
+
+Start nrserver with:
+
+	%%PREFIX%%/etc/rc.d/nrserver start
